@@ -25,7 +25,7 @@ unsafe fn win_runas(cmd: *const c_ushort, args: *const c_ushort, show: bool) -> 
     let verb = "runas\0".encode_utf16().collect::<Vec<u16>>();
     CoInitializeEx(
         ptr::null(),
-        COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE,
+        (COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE) as u32,
     );
 
     sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
